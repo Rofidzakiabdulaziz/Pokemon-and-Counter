@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <title>Latihan 2</title>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel"> 
+        const container = document.getElementById('root')
+        const root = ReactDOM.createRoot(container);
+
+        function Button({onClick,label,disabled}){
+            return(
+            <>
+               <button onClick={onClick} disabled={disabled}>{label}</button>
+          </>
+        )
+
+        }
+        function Homepage(){
+           
+
+            const [likes, setLikes] = React.useState(0);
+
+            function handleClick(){
+                setLikes(likes  + 1)
+            }
+            function handleMin(){
+                setLikes(likes - 1 )
+            }
+            function handleReset(){
+                setLikes(0)
+            }
+
+
+            const done = likes < 0 || likes > 10 ;
+            return(
+            <>
+      
+    
+        <div> 
+            <Button onClick={handleMin} label = "-" disabled={likes == 10 || likes == -1} />
+            <p>{done ? "done" : likes}</p>
+            <Button onClick={handleClick} label = "+" disabled={likes >=10 || likes == -1} />
+             </div>
+             <Button onClick={handleReset} label = "Reset" disabled={likes >= 0 && likes < 10} />
+             </>
+        );
+        
+        
+
+        }
+
+        
+        
+        root.render(<Homepage/>)
+        
+    </script>
+</body>
+</html>
